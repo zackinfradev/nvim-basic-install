@@ -66,12 +66,35 @@ install_neovim(){
         fi
     fi
 }
+
+move_items(){
+    mv ./nvim-basic-installer/nvim-basic-install.sh ~/nvim-basic-install.sh
+    if [ $? -ne 0 ]; then
+        exit $?
+    fi
+    mv ./nvim-basic-installer/.config ~/.config
+    if [ $? -ne 0 ]; then
+        exit $?
+    fi
+}
+
+rm_repo(){
+    rm -rf ./nvim-basic-installer
+    if [ $? -ne 0 ]; then
+        exit $?
+    fi
+}
+
 find_init_lua(){
-    remap_lines=$(find ~/.config/nvim/init.lua --type f | wc -l)
-    echo "Cloned $remap_lines config lines into init.lua"
+    remap_lines=$(wc -l < ~/.config/nvim/init.lua)
+    echo "Moved $remap_lines config lines into init.lua"
 }
 
 install_neovim
+
+move_items
+
+rm_repo
 
 find_init_lua
 
