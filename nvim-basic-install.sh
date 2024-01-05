@@ -54,11 +54,8 @@ install_neovim(){
 
 install_neovim
 
-config_path="~/.config/nvim"
-init_path=".config/nvim/init.lua"
-
-mkdir -p "$config_path"
-cp -r "$config_path" "$init_path"
+mkdir -p ~/.config/nvim
+cp ~/neovim-basic-install/.config/nvim/init.lua ~/.config/nvim/init.lua
 
 remap_lines=$(wc -l < ~/.config/nvim/init.lua)
 echo "Moved $remap_lines config lines into init.lua"
