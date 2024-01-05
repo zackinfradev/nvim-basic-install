@@ -67,19 +67,8 @@ install_neovim(){
     fi
 }
 
-move_items(){
-    mv ./nvim-basic-installer/nvim-basic-install.sh ~/nvim-basic-install.sh
-    if [ $? -ne 0 ]; then
-        exit $?
-    fi
-    mv ./nvim-basic-installer/.config ~/.config
-    if [ $? -ne 0 ]; then
-        exit $?
-    fi
-}
-
-rm_repo(){
-    rm -rf ./nvim-basic-installer
+copy_items(){
+    cp -r ./nvim-basic-installer/.config ~/.config
     if [ $? -ne 0 ]; then
         exit $?
     fi
@@ -92,9 +81,7 @@ find_init_lua(){
 
 install_neovim
 
-move_items
-
-rm_repo
+copy_items
 
 find_init_lua
 
